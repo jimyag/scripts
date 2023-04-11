@@ -53,5 +53,5 @@ curl -fsSL https://github.com/jimyag/init-scripts/raw/main/gost/gost.run | sh
 
 或者使用 自定义端口和密钥 参数分别为 mws 的端口 ，kcp的端口，加密的密钥。
 ```shell
-curl -fsSL https://github.com/jimyag/init-scripts/raw/main/gost/gost.run | sh -s -- 11111 11111 mykey
+curl -fsSL https://github.com/jimyag/init-scripts/raw/main/gost/gost.run | sh -s -- 11111 11112 mykey
 ```
