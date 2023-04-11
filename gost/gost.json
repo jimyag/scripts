@@ -1,0 +1,8 @@
+{
+  "Debug": false,
+  "Retries": 1,
+  "ServeNodes": [
+    "ss+mws://chacha20-ietf-poly1305:yourkey@:yourport1",
+    "ss+kcp://chacha20-ietf-poly1305:yourkey@:yourport2?c=/root/gost/kcp.json"
+  ]
+}
