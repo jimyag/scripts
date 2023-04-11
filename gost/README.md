@@ -25,6 +25,7 @@ ln -s /root/init-scripts/gost /root/gost
 ## 修改密钥和端口号
 
 `44444` 和 `44445` 是修改的端口号，`key` 是修改的密钥，根据自己的要求填写即可。
+在防火墙打开相应的端口
 ```shell
 cd /root/init-scripts
 find . -type f -not -name "*.md" -exec sed -i 's/yourport1/44444/g' {} +
@@ -42,6 +43,15 @@ systemctl start gost.service
 
 ## 懒人版脚本
 
+在 44444 端口启动基于 mws 传输协议，加密算法为chacha20-ietf-poly1305，密钥为 key 的 Shadowsocks 代理
+在 44445 端口启动基于 kcp 传输协议，加密算法为chacha20-ietf-poly1305，密钥为 key 的 Shadowsocks 代理
+！！！在防火墙打开对应的端口
+
 ```shell
-sh gost.sh
+curl -fsSL https://github.com/jimyag/init-scripts/raw/main/gost/gost.run | sh
+```
+
+或者使用 自定义端口和密钥 参数分别为 mws 的端口 ，kcp的端口，加密的密钥。
+```shell
+curl -fsSL https://github.com/jimyag/init-scripts/raw/main/gost/gost.run | sh -s -- 11111 11111 mykey
 ```

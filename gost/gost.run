@@ -1,5 +1,9 @@
 #!/bin/sh
 
+port1=${1:-44444}
+port2=${2:-44445}
+key=${3:-key}
+
 if ! command -v git > /dev/null
 then
     echo "Git is not installed, please install Git before running this script."
@@ -15,9 +19,9 @@ cd init-scripts || exit 1
 current_dir=$(pwd)
 ln -s "${current_dir}"/gost /root/gost || exit 1
 
-find . -type f -not -name "*.md" -exec sed -i 's/yourport1/44444/g' {} +
-find . -type f -not -name "*.md" -exec sed -i 's/yourport2/44445/g' {} +
-find . -type f -not -name "*.md" -exec sed -i 's/yourkey/key/g' {} +
+find . -type f -not -name "*.md" -exec sed -i "s/yourport1/$port1/g" {} +
+find . -type f -not -name "*.md" -exec sed -i "s/yourport2/$port2/g" {} +
+find . -type f -not -name "*.md" -exec sed -i "s/yourkey/$key/g" {} +
 
 ln -s "${current_dir}"/gost/gost.service /etc/systemd/system/gost.service
 systemctl daemon-reload
