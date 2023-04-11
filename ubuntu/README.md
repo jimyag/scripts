@@ -1,5 +1,7 @@
 # 初始化 Ubuntu 环境
 
+此脚本不会更新 openssh-server
+
 ## run
 
 ```shell
