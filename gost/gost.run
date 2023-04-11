@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if ! command -v git &> /dev/null
+then
+    echo "Git is not installed, please install Git before running this script."
+    exit 1
+fi
+
+git clone https://github.com/jimyag/init-scripts.git
+
+curl -L https://github.com/ginuerzh/gost/releases/download/v2.11.5/gost-linux-amd64-2.11.5.gz | gunzip -c > gost && chmod +x gost &&  sudo mv gost /usr/local/bin/
+
+cd init-scripts || exit 1
+
+current_dir=$(pwd)
+ln -s "${current_dir}"/gost /root/gost || exit 1
+
+find . -type f -not -name "*.md" -exec sed -i 's/yourport1/44444/g' {} +
+find . -type f -not -name "*.md" -exec sed -i 's/yourport2/44445/g' {} +
+find . -type f -not -name "*.md" -exec sed -i 's/yourkey/key/g' {} +
+
+ln -s "${current_dir}"/gost/gost.service /etc/systemd/system/gost.service
+systemctl daemon-reload
+systemctl enable gost.service
+systemctl start gost.service
