@@ -38,7 +38,7 @@ echo -e "\n" | sudo add-apt-repository ppa:ultradvorka/ppa
 echo -e "\n" | sudo add-apt-repository ppa:neovim-ppa/stable
 
 # 排除更新 openssh-server
-echo -e "Package: openssh-server\nPin: release *\nPin-Priority: -1" > /etc/apt/preferences.d/exclude-openssh-server
+printf  "Package: openssh-server\nPin: release *\nPin-Priority: -1" > /etc/apt/preferences.d/exclude-openssh-server
 # 升级软件
 sudo apt-get update && sudo  apt-get upgrade -y
 
